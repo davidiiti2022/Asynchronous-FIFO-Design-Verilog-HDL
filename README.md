@@ -68,3 +68,35 @@ The main focus of this project is **Clock Domain Crossing (CDC)** and reliable d
                   └─────────┬──────────┘
                             │
                      Data Read / Write
+
+
+## Working Principle
+Write Operation
+
+The write side operates using the wclk clock.
+
+Write Request
+      │
+      ▼
+Check FIFO Full
+      │
+      ├── Full ──► Block Write
+      │
+      ▼
+Write Data to Memory
+      │
+      ▼
+Increment Write Pointer
+      │
+      ▼
+Convert Binary Pointer
+      │
+      ▼
+Gray-Code Pointer
+      │
+      ▼
+Synchronize to Read Domain
+
+When a valid write request is received and the FIFO is not full, the input data is stored in the memory location pointed to by the write address.
+
+The write pointer is then incremented.
