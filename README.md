@@ -69,8 +69,10 @@ The main focus of this project is **Clock Domain Crossing (CDC)** and reliable d
                             │
                      Data Read / Write
 
+---
 
 ## Working Principle
+```
 Write Operation
 
 The write side operates using the wclk clock.
