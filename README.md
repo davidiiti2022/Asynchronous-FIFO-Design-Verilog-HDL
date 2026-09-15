@@ -68,37 +68,20 @@ The main focus of this project is **Clock Domain Crossing (CDC)** and reliable d
                   └─────────┬──────────┘
                             │
                      Data Read / Write
-
----
-
-## Working Principle
 ```
-Write Operation
+## Working Principle
 
-The write side operates using the wclk clock.
+### Write Operation
 
-Write Request
-      │
-      ▼
-Check FIFO Full
-      │
-      ├── Full ──► Block Write
-      │
-      ▼
-Write Data to Memory
-      │
-      ▼
-Increment Write Pointer
-      │
-      ▼
-Convert Binary Pointer
-      │
-      ▼
-Gray-Code Pointer
-      │
-      ▼
-Synchronize to Read Domain
+The write side operates using the `wclk` clock.
 
-When a valid write request is received and the FIFO is not full, the input data is stored in the memory location pointed to by the write address.
+```mermaid
+flowchart TD
+    A[Write Request] --> B{Check FIFO Full}
+    B -->|Full| C[Block Write]
+    B -->|Not Full| D[Write Data to Memory]
+    D --> E[Increment Write Pointer]
+    E --> F[Convert Binary Pointer to Gray Code]
+    F --> G[Synchronize Pointer to Read Domain]
 
-The write pointer is then incremented.
+```nter is then incremented.
